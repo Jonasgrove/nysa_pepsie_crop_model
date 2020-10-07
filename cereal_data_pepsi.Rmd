@@ -1,0 +1,76 @@
+---
+title: "Cereal_Data_Challenge"
+author: "Jonas Grove"
+date: "10/5/2020"
+output: pdf_document
+---
+
+# Data Preparation
+
+### Data process description
+
+## Code Block 1. Data Preparation.
+
+
+```{r}
+setwd("/Users/jonasgrove/Projects/pepsi_cereal")
+#install.packages("readxl")
+library("readxl")
+
+#load all data into frames
+crop_data <- read_excel("nyas-challenge-2020-data.xlsx", sheet = "Crop and Grain Data")
+weather_data <- read_excel("nyas-challenge-2020-data.xlsx", sheet = "Weather Data")
+site_data <- read_excel("nyas-challenge-2020-data.xlsx", sheet = "Site Data")
+
+#remove year and whitespace from site ID to make uniform
+crop_data$`Site ID` <- gsub("Year", "", crop_data$`Site ID`)
+crop_data$`Site ID` <- gsub("[[:space:]]", "", crop_data$`Site ID`)
+weather_data$`Site ID` <- gsub("[[:space:]]", "", weather_data$`Site ID`)
+site_data$`Site ID` <- gsub("[[:space:]]", "", site_data$`Site ID`)
+
+##break weather data into 4 growing quarters
+factors_sites <- as.factor(site_data$`Site ID`)
+site_levels <- levels(factors_sites)
+data_div_num <- 4
+weather_all <- data.frame()
+
+for (site_level in site_levels){
+  site_subs <- subset(weather_data, subset = (weather_data$'Site ID' == site_level))
+  div_num <- nrow(site_subs)%/%data_div_num
+  q1 <- site_subs[1:div_num,]
+  q2 <- site_subs[div_num+1:div_num,]
+  q3 <- site_subs[2*div_num+1:div_num,]
+  q4 <- site_subs[3*div_num+1:div_num,]
+
+#average all daa from four different different growing quarter for vars A-F
+  weather_new <- data.frame('Site ID' = site_level)
+  all_qs = list(q1,q2,q3,q4)
+  i = 2 
+  for (q in all_qs){
+    j=i+5
+    weather_vars <- data.frame("Weather Variable A"=c(mean(q$`Weather Variable A`)),
+                               "Weather Variable B"=c(mean(q$`Weather Variable B`)),
+                               "Weather Variable C"=c(mean(q$`Weather Variable C`)),
+                               "Weather Variable D"=c(mean(q$`Weather Variable D`)),
+                               "Weather Variable E"=c(mean(q$`Weather Variable E`)),
+                               "Weather Variable F"=c(mean(q$`Weather Variable F`)))
+    weather_new[,i:j] <- weather_vars
+    i=i+6}
+  weather_all[nrow(weather_all)+1,1:25] <- weather_new
+  }
+
+#merge all frames
+all_data <- merge(x=crop_data, y=site_data, by.x = 'Site ID', by.y = 'Site ID')
+all_data <- merge(x=all_data, y=weather_all, by.x = 'Site ID', by.y = 'Site.ID')
+
+#obtain targets (assessment and assessment type)
+targets <- all_data[,6:7]
+
+#remove dates, as this info is captured in 
+all_data$`Assessment Date (mm/dd/year)` <- all_data$`Sowing Date (mm/dd/year)` <- all_data$`Harvest Date (mm/dd/year)` <- NULL
+
+
+#write features and targets to file
+write.table(all_data, file = "/Users/jonasgrove/Projects/pepsi_cereal/prep_cereal_data", sep = " ", row.names = FALSE)
+```
+

@@ -1,0 +1,32 @@
+{
+    "id": "CEF042D6",
+    "path": null,
+    "project_path": null,
+    "type": "r_dataframe",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1602041476107.0,
+    "source_on_save": false,
+    "relative_order": 3,
+    "properties": {
+        "expression": "weather_all",
+        "caption": "weather_all",
+        "totalObservations": 15,
+        "displayedObservations": 15,
+        "variables": 25,
+        "cacheKey": "ED969AFB",
+        "object": "weather_all",
+        "environment": "",
+        "contentUrl": "grid_resource/gridviewer.html?env=&obj=weather_all&cache_key=ED969AFB&max_cols=50",
+        "preview": 0
+    },
+    "folds": "",
+    "lastKnownWriteTime": 4395630080,
+    "encoding": "",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1602041476107,
+    "read_only": false,
+    "read_only_alternatives": []
+}

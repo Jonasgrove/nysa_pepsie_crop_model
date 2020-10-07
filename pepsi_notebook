@@ -1,0 +1,45 @@
+pepsi crop and grain data 
+
+==============
+| 09/29/2020 |
+==============
+objective: develop model for prediction of crop assessment based on environmental parameters
+           
+//the parameters available which could affect this score are
+
+    • growth site : A, B, C, D, E 
+        • Latitude : float
+        • Elevation :  float
+        • Sowing Date : diff with harvest float var
+        • Harvest Date : same
+        • Soil Parameter A : Int
+        • Soil Parameter B : float
+        • Fertilizer Amount : float
+
+    • Growth year : 2015, 2016, 2017
+
+    • Weather 
+        • Variable A : float
+        • Variable B : float
+        • Variable D : float
+        • Variable E : float
+        • Variable F : float
+
+    • Growth Stage (maybe days growing?)
+
+    • Variety : M/B
+
+    • Assessment Type : (A/C) - (A-Z)
+                        : Y
+
+//strategy
+
+    // first I must divide data by the assessment technique
+       there is likely variation between the assessment technique which can be explored
+            test for this by graphing assessment score by the assessment method
+
+    // or should I just use the assessment as a categorical variable...? hmmm
+
+    //I think I'm gonna turn the assessment type into dummies
+
+

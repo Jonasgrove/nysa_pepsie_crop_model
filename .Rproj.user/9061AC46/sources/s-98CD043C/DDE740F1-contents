@@ -1,0 +1,50 @@
+setwd("~/bioinformatics/Bi623/bi_623/problem_sets/assignment_6")
+
+#read in lengths
+norm40_lengths <- read.table("tri_40xnorm.len", header=F, sep=" ")
+rare_lengths <- read.table("tri_rare.len", header=F, sep=" ")
+
+#max lengths
+n40_max <- max(norm40_lengths$V1)
+rare_max <- max(rare_lengths$V1)
+
+#min lengths
+n40_min <- min(norm40_lengths$V1)
+rare_min <- min(rare_lengths$V1)
+
+#mean lengths
+n40_mean <- mean(norm40_lengths$V1)
+rare_mean <- mean(rare_lengths$V1)
+
+#mean lengths
+n40_median <- median(norm40_lengths$V1)
+rare_median <- median(rare_lengths$V1)
+
+
+##length distributions norm 40
+par(mfrow=c(2,2))
+hist(norm40_lengths$V1, xlim = c(0,12500), ylim = c(0,40000), main="40x Normalized and Filtered Trinity Assembly")
+boxplot(norm40_lengths$V1, ylim = c(0,6000), main="40x Normalized and Filtered Trinity Assembly")
+
+##length distributions rare filter
+hist(rare_lengths$V1, xlim = c(0,12500), ylim = c(0,40000), main="Rare Kmer Filtered Trinity Assembly")
+boxplot(rare_lengths$V1, ylim = c(0,6000), main="Rare Kmer Filtered Trinity Assembly")
+
+
+
+#final table 
+setwd("/Users/jonasgrove/bioinformatics/Bi623/bi_623/problem_sets/assignment_6/blastx_out")
+prot_gene <- read.table("ga_prot_gene.tsv", header=F, sep="\t")
+
+best_rare <- read.table("rare_best.tsv", header=F, sep="\t")
+best_40x <- read.table("40x_best.tsv", header=F, sep="\t")
+
+colnames(prot_gene) = c('prot_id', 'gene_id')
+colnames(best_rare) = c('trin_id', 'prot_id', 'evalue')
+colnames(best_40x) = c('trin_id', 'prot_id', 'evalue')
+
+final_rare <- merge(prot_gene, best_rare, by.x = 'prot_id', by.y = 'prot_id')
+final_40x <- merge(prot_gene, best_40x, by.x = 'prot_id', by.y = 'prot_id')
+
+head(final_rare)
+head(final_40x)
