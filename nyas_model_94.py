@@ -39,10 +39,10 @@ import neural_net
 
 NeuralNet = neural_net.NeuralNet
 
-crop_score_model = NeuralNet(X, Y, 5, 259, "r", 500)
+crop_score_model = NeuralNet(X, Y, 5, 256, "r", 10000)
 crop_score_model.model.save
 
-crop_score_model.model.save_weights("crop_model_weights.tf")
+crop_score_model.model.save_weights("crop_model_weights_4_256_10000.tf")
 
 
 #check accuracy

@@ -1,2 +1,2 @@
-model_checkpoint_path: "crop_model_weights.tf"
-all_model_checkpoint_paths: "crop_model_weights.tf"
+model_checkpoint_path: "crop_model_weights_4_256_10000.tf"
+all_model_checkpoint_paths: "crop_model_weights_4_256_10000.tf"

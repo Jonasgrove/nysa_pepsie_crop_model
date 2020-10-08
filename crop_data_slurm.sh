@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #SBATCH --partition=bgmp        ### Partition (like a queue in PBS)
-#SBATCH --job-name=nyas_model_v3      ### Job Name
-#SBATCH --output=nyas_model_v3.out       ### File in which to store job output
-#SBATCH --error=nyas_model_v3.er        ### File in which to store job error messages
+#SBATCH --job-name=nyas_model_v4      ### Job Name
+#SBATCH --output=nyas_model_v4.out       ### File in which to store job output
+#SBATCH --error=nyas_model_v4.er        ### File in which to store job error messages
 #SBATCH --time=0-10:00:00       ### Wall clock time limit in Days-HH:MM:SS
 #SBATCH --nodes=1               ### Number of nodes needed for the job
 #SBATCH --ntasks-per-node=1     ### Number of tasks to be launched per Node
