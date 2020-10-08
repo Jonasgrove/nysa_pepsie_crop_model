@@ -43,3 +43,4 @@ objective: develop model for prediction of crop assessment based on environmenta
     //I think I'm gonna turn the assessment type into dummies
 
 
+layers: 5nodes: 259loss: 94.77544663594924
