@@ -9,6 +9,7 @@
 #SBATCH --ntasks-per-node=1     ### Number of tasks to be launched per Node
 #SBATCH --account=bgmp          ### Account used for job submission
 #SBATCH --cpus-per-task=1       ##number of cpus (cores) per task
+#SBATCH --mem=50000
 
 conda activate bgmp_py37
 
