@@ -1,3 +1,0 @@
-setwd("~/bioinformatics/UO_ABS/CLASS_MATERIALS/Datasets/Airbnb_data/")
-
-airbnb_data <- read.table(file = "Airbnb_listings_Portland.csv")
